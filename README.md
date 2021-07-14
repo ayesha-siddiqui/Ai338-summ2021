@@ -6,4 +6,4 @@
 
 ## SCORE SCREENSHOT
 ###
-![](image/score.PNG)
+![](As02/score.PNG)
