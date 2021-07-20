@@ -23,3 +23,8 @@ We have got 0.76794 accuray.
 
 ![Prediction_Score](https://user-images.githubusercontent.com/86402192/126363865-dee7218e-aeba-4345-af6a-0ce269786f1e.PNG)
 ![Best_Score](https://user-images.githubusercontent.com/86402192/126363957-ed34b5df-cc40-48b6-9c9d-d31b3df654ed.PNG)
+
+# Reference:
+* https://github.com/AndreBiedenkapp/NaivePyes
+* https://scikit-learn.org/stable/modules/naive_bayes.html
+* https://www.kaggle.com/msahebi/mnist-naive-bayesian-classifier
