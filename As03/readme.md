@@ -20,4 +20,6 @@ SVM or Support Vector Machine is a linear model for classification and regressio
  # ACCURACY
 We have got 0.76794 accuray.
 
-![Prediction_Score](https://user-images.githubusercontent.com/61629843/126363177-b30acbd8-574e-4a3e-9c2a-64f1ba5e60de.PNG)
+
+![Prediction_Score](https://user-images.githubusercontent.com/86402192/126363865-dee7218e-aeba-4345-af6a-0ce269786f1e.PNG)
+![Best_Score](https://user-images.githubusercontent.com/86402192/126363957-ed34b5df-cc40-48b6-9c9d-d31b3df654ed.PNG)
