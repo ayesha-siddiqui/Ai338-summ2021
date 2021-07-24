@@ -1,0 +1,93 @@
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from  sklearn.model_selection import GridSearchCV
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNneighborsClassifier
+from sklearn.svm import SVC
+
+df1 =pd.read_csv('train.csv')
+df1.head()
+df1.drop(['PassengerID','Name','Ticket','Cabin','Embarked','SibSp','Parch'])
+df1.head()
+df1['Age'].describe()
+l_sex_dummies=pd.get_dummies(df1['Sex'],drop_first==True)
+df1=pd.concat([df1,l_sex_dummies],axis=1)
+df1.head()
+df1.drop(['Sex'],axis=1, inplace=True)
+df1.head()
+
+sts = StandardScaler()
+feature_scale = ['Age','Fare']
+df1[feature_scale] = sts.fit_transform(df1[feature_scale])
+df1.head()
+X=df1.drop(['Survived'],axis=1)
+y=df1['Survived']
+
+model_pparam - {
+    'DecisionTreeClassifier' :{
+        'model' :DecisionTreeClassifier(),
+        'param' :{
+            'criterion' : ['gini', 'entropy']
+        }
+    },
+        'KNneighborsClassifier' :{
+            'model' :KNneighborsClassifier(),
+            'param' :{
+                'n_neighbors' :[5,10,15,20,25]
+            }
+        },
+            'SVC' : {
+                'model' :SVC(),
+                'param' : {
+                    'kernel' : ['rbf', 'linear', 'sigmoid'],
+                    'C' : [0.1,1,10,100]
+                }
+            }
+}
+
+scores = []
+for model_name, mp is model_param.items():
+    model_selection = GridSearchCV(estimators=mp['model'], param_grid=mp['param'],cv=5,return_train_score=False)
+    model_selection.fit(X,y)
+    scores.append({
+        'model' : model_name,
+        'best_score' : model_selection.best_score_,
+        "best_params" : model_selection.best_params_
+
+    })
+
+df_model_score =pd.DataFrame(scores,columns=['model','best_score','best_params'])
+df_model_score
+
+df2 = pd.read_csv('test.csv')
+df2.head()
+df3=df2.drop(['PassengerID','Name','Ticket','Cabin','Embarked','SibSp','Parch'], axis=1)
+df3.isnull().sum()
+
+df3['Age'].fillna(df3['Age'].mean(),inplace=True)
+df3['Fare'].fillna(df3['Fare'].mean(),inplace=True)
+l_sex_dummies=pd.get_dummies(df3['Sex'],drop_first=True)
+df3=pd.concat([df3,l_sex_dummies],axis=1)
+df3.drop(['Sex'],axis=1,inplace=True)
+df3.head()
+df3[feature_scale] = sts.fit_transfrom(df3[feature_scale])
+df3.head()
+y_predicted = model_svc.predict(df3)
+submission = pd.DataFrame({
+    "PassengerID" : df2['PassengerID'],
+    "Survived" : y_predicted
+})
+submission.to_csv('titanic_submission_As03.csv', index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
